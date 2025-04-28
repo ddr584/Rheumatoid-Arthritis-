@@ -12,7 +12,6 @@ try:
     with open('model/trained_model.pkl', 'rb') as f:
         trained_model = pickle.load(f)
 except FileNotFoundError:
-    # Train the model if pickle not found
     data = pd.read_excel('ra_dataset_500.xlsx')
     X = data[['age', 'CRP_levels', 'ESR', 'joint_pain_score', 'fatigue_score']]
     y = data['RA_severity']
@@ -46,5 +45,3 @@ def predict():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
-
-
